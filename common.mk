@@ -94,6 +94,8 @@ PRODUCT_PACKAGES += \
     android.hardware.audio@6.0-impl \
     android.hardware.audio.effect@6.0-impl \
     android.hardware.audio.service \
+    android.hardware.bluetooth@1.0 \
+    android.hardware.bluetooth@1.0.vendor \
     android.hardware.bluetooth.audio-impl \
     android.hardware.soundtrigger@2.3-impl \
     audioadsprpcd \
@@ -419,11 +421,14 @@ PRODUCT_PACKAGES += \
     android.hardware.radio.deprecated@1.0.vendor \
     android.system.net.netd@1.1.vendor \
     libprotobuf-cpp-full \
+    libprotobuf-cpp-full-3.9.1-vendorcompat \
+    libprotobuf-cpp-lite-3.9.1-vendorcompat \
     librmnetctl \
     libxml2
 
 # Sensors
 PRODUCT_PACKAGES += \
+    android.frameworks.sensorservice@1.0.vendor \
     android.hardware.sensors@2.0-service.multihal \
     libsensorndkbridge
 
@@ -499,7 +504,7 @@ PRODUCT_ENFORCE_ARTIFACT_PATH_REQUIREMENTS := strict
 
 # WiFi
 PRODUCT_PACKAGES += \
-    android.hardware.wifi@1.0-service \
+    android.hardware.wifi-service \
     hostapd \
     libqsap_sdk \
     libwpa_client \
