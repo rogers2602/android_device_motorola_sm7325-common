@@ -1,4 +1,4 @@
-# All unpinned blobs below are extracted from dubai_g-user 13 T1RD33.116-33-3 f829db-a0c97 release-keys.
+# All unpinned blobs below are extracted from dubai_g-user 13 T1RD33.116-33-13 441420-2d5de8 release-keys - RETAIL variant.
 
 # ADSP
 vendor/bin/adsprpcd
@@ -760,7 +760,6 @@ vendor/bin/adpl
 vendor/bin/hw/qcrilNrd
 vendor/bin/ks
 vendor/bin/mbm_spy
-vendor/bin/netmgrd
 vendor/bin/pd-mapper
 vendor/bin/port-bridge
 vendor/bin/qmi_motext_hook
@@ -900,12 +899,15 @@ vendor/lib64/vendor.qti.hardware.radio.uim_remote_client@1.1.so
 vendor/lib64/vendor.qti.hardware.radio.uim_remote_client@1.2.so
 vendor/lib64/vendor.qti.hardware.radio.uim_remote_server@1.0.so
 
+# RIL - Data - from dubai S1RDS32.55-106-3
+vendor/bin/netmgrd|85718e6eac96b393848a4c70f3dc31acbb2f4374
+
 # Ril - IMS (APK)
 system/etc/permissions/moto-telephony.xml:system_ext/etc/permissions/moto-telephony.xml
 system/framework/moto-telephony.jar:system_ext/framework/moto-telephony.jar
 
 # Radio - IMS (APK) - from patched source
--system_ext/priv-app/ims/ims.apk|70170fff2df066315e4bce09ecd203d3e28cfec4
+-system_ext/priv-app/ims/ims.apk|410414153e3b4b85c5e9f5b6f5c4fc6b98c2994b
 
 # RIL - IMS
 -system_ext/app/ImsRcsService/ImsRcsService.apk
