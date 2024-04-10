@@ -20,9 +20,6 @@ PRODUCT_USE_DYNAMIC_PARTITIONS := true
 # Enable project quotas and casefolding for emulated storage without sdcardfs
 $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 
-# Enable updating of APEXes
-$(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
-
 # Installs gsi keys into ramdisk, to boot a GSI with verified boot.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/developer_gsi_keys.mk)
 
@@ -244,9 +241,7 @@ $(foreach f,$(wildcard $(LOCAL_PATH)/rootdir/bin/*.sh),\
 # IPACM
 PRODUCT_PACKAGES += \
     ipacm \
-    IPACM_cfg.xml \
-    libipanat \
-    liboffloadhal
+    IPACM_cfg.xml
 
 # IPC router config
 PRODUCT_COPY_FILES += \
@@ -300,10 +295,6 @@ PRODUCT_PACKAGES += \
 # Neural Networks
 PRODUCT_PACKAGES += \
     android.hardware.neuralnetworks@1.3.vendor
-
-# Net
-PRODUCT_PACKAGES += \
-    netutils-wrapper-1.0
 
 # OMX
 PRODUCT_PACKAGES += \
@@ -423,8 +414,7 @@ PRODUCT_PACKAGES += \
     libprotobuf-cpp-full \
     libprotobuf-cpp-full-3.9.1-vendorcompat \
     libprotobuf-cpp-lite-3.9.1-vendorcompat \
-    librmnetctl \
-    libxml2
+    librmnetctl
 
 # Sensors
 PRODUCT_PACKAGES += \
