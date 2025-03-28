@@ -1,10 +1,7 @@
 #
-# Copyright (C) 2022-2024 The LineageOS Project
-#
+# SPDX-FileCopyrightText: The LineageOS Project
 # SPDX-License-Identifier: Apache-2.0
 #
-
-BOARD_VENDOR := motorola
 
 COMMON_PATH := device/motorola/sm7325-common
 
@@ -108,7 +105,6 @@ TARGET_FS_CONFIG_GEN := $(COMMON_PATH)/config.fs
 BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := default
 
 # HIDL
-DEVICE_FRAMEWORK_MANIFEST_FILE += $(COMMON_PATH)/framework_manifest.xml
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := \
     $(COMMON_PATH)/device_framework_matrix.xml \
     hardware/qcom-caf/common/vendor_framework_compatibility_matrix.xml \
@@ -161,7 +157,6 @@ TARGET_NO_RECOVERY := true
 TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
-TARGET_RECOVERY_DEVICE_DIRS += $(COMMON_PATH)
 TARGET_RECOVERY_FSTAB := $(COMMON_PATH)/rootdir/etc/fstab.qcom
 TARGET_RECOVERY_WIPE := $(COMMON_PATH)/recovery/recovery.wipe
 

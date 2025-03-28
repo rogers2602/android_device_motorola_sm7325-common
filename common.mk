@@ -1,6 +1,5 @@
 #
-# Copyright (C) 2022-2024 The LineageOS Project
-#
+# SPDX-FileCopyrightText: The LineageOS Project
 # SPDX-License-Identifier: Apache-2.0
 #
 
@@ -31,9 +30,7 @@ PRODUCT_ENFORCE_RRO_TARGETS := *
 
 PRODUCT_PACKAGES += \
     FrameworksResCommon_Sys \
-    CarrierConfigResCommon_Sys \
     SystemUIResCommon_Sys \
-    TelecommResCommon_Sys \
     TelephonyResCommon_Sys \
     WifiResCommon_Sys \
     FrameworksResTarget \
@@ -68,25 +65,20 @@ PRODUCT_COPY_FILES += \
 
 # Boot control
 PRODUCT_PACKAGES += \
-    android.hardware.boot@1.1-impl-qti \
-    android.hardware.boot@1.1-impl-qti.recovery \
-    android.hardware.boot@1.1-service \
+    android.hardware.boot@1.2-impl-qti \
+    android.hardware.boot@1.2-impl-qti.recovery \
+    android.hardware.boot@1.2-service \
     bootctrl.lahaina \
     bootctrl.lahaina.recovery
 
 PRODUCT_PACKAGES_DEBUG += \
     bootctl
 
-# Atrace
-PRODUCT_PACKAGES += \
-    android.hardware.atrace@1.0-service
-
 # Audio
 PRODUCT_PACKAGES += \
     android.hardware.audio@6.0-impl \
     android.hardware.audio.effect@6.0-impl \
     android.hardware.audio.service \
-    android.hardware.bluetooth@1.0 \
     android.hardware.bluetooth.audio-impl \
     android.hardware.soundtrigger@2.3-impl \
     audioadsprpcd \
@@ -95,16 +87,8 @@ PRODUCT_PACKAGES += \
     audio.r_submix.default \
     audio.usb.default \
     firmware_aw_cali.bin_symlink \
-    libaudiopreprocessing \
-    libbundlewrapper \
-    libdownmix \
-    libdynproc \
-    libeffectproxy \
-    libldnhncr \
     libqcomvisualizer \
     libqcomvoiceprocessing \
-    libreverbwrapper \
-    libvisualizer \
     sound_trigger.primary.lahaina
 
 PRODUCT_COPY_FILES += \
@@ -113,7 +97,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/sku_yupik/sound_trigger_platform_info.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_yupik/sound_trigger_platform_info.xml
 
 PRODUCT_COPY_FILES += \
-    frameworks/av/services/audiopolicy/config/a2dp_in_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/a2dp_in_audio_policy_configuration.xml \
     frameworks/av/services/audiopolicy/config/bluetooth_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_audio_policy_configuration.xml \
     frameworks/av/services/audiopolicy/config/r_submix_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/r_submix_audio_policy_configuration.xml \
     frameworks/av/services/audiopolicy/config/usb_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/usb_audio_policy_configuration.xml
@@ -136,11 +119,9 @@ PRODUCT_PACKAGES += \
     android.hardware.graphics.mapper@4.0-impl-qti-display \
     init.qti.display_boot.rc \
     init.qti.display_boot.sh \
-    gralloc.default \
     vendor.qti.hardware.display.allocator-service \
     vendor.qti.hardware.display.composer-service \
-    vendor.qti.hardware.memtrack-service \
-    libdisplayconfig.system.qti
+    vendor.qti.hardware.memtrack-service
 
 # DRM
 PRODUCT_PACKAGES += \
@@ -195,6 +176,9 @@ $(foreach f,$(wildcard $(LOCAL_PATH)/rootdir/etc/init/*.rc),\
 $(foreach f,$(wildcard $(LOCAL_PATH)/rootdir/bin/*.sh),\
         $(eval PRODUCT_COPY_FILES += $(f):$(TARGET_COPY_OUT_VENDOR)/bin/$(notdir $f)))
 
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/recovery/root/init.recovery.qcom.rc:recovery/root/init.recovery.qcom.rc
+
 # IPACM
 PRODUCT_PACKAGES += \
     ipacm \
@@ -216,10 +200,6 @@ PRODUCT_PACKAGES += \
     vendor.lineage.livedisplay@2.1-service.motorola_lahaina
 
 # Media
-PRODUCT_PACKAGES += \
-    libcodec2_hidl@1.0.vendor \
-    libcodec2_vndk.vendor
-
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/media/init.qti.media.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.qti.media.sh \
     $(LOCAL_PATH)/media/init.qti.media.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.qti.media.rc
@@ -271,6 +251,7 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.wifi.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.wifi.xml \
     frameworks/native/data/etc/android.software.device_id_attestation.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.device_id_attestation.xml \
     frameworks/native/data/etc/android.software.ipsec_tunnels.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.ipsec_tunnels.xml \
+    frameworks/native/data/etc/android.software.ipsec_tunnel_migration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.ipsec_tunnel_migration.xml \
     frameworks/native/data/etc/android.software.midi.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.midi.xml \
     frameworks/native/data/etc/android.software.sip.voip.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.sip.voip.xml \
     frameworks/native/data/etc/android.software.verified_boot.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.verified_boot.xml \
@@ -316,10 +297,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     android.hardware.power-service-qti
 
-# RenderScript
-PRODUCT_PACKAGES += \
-    android.hardware.renderscript@1.0-impl
-
 # RFS MDM MPSS symlinks
 PRODUCT_PACKAGES += \
     rfs_mdm_mpss_readonly_vendor_fsg_symlink
@@ -330,7 +307,7 @@ PRODUCT_PACKAGES += \
 
 # Sensors
 PRODUCT_PACKAGES += \
-    android.hardware.sensors@2.0-service.multihal
+    android.hardware.sensors-service.multihal
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
@@ -417,16 +394,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/WCNSS_qcom_cfg.ini \
     $(LOCAL_PATH)/wifi/p2p_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/p2p_supplicant_overlay.conf \
     $(LOCAL_PATH)/wifi/wpa_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant_overlay.conf
-
-PRODUCT_VENDOR_MOVE_ENABLED := true
-
-# WiFi Display
-PRODUCT_PACKAGES += \
-    libgui_shim \
-    libinput_shim \
-    libnl \
-    libpng.vendor \
-    libwfdaac_vendor
 
 # Inherit from vendor blobs
 $(call inherit-product, vendor/motorola/sm7325-common/sm7325-common-vendor.mk)
